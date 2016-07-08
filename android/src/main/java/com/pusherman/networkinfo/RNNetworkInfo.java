@@ -38,7 +38,7 @@ public class RNNetworkInfo extends ReactContextBaseJavaModule {
   public void getMacAddress(final Callback callback){
     WifiInfo info = wifi.getConnectionInfo();
     String macAddress = wInfo.getMacAddress();
-    callback.invoke(ssid);
+    callback.invoke(macAddress);
   }
 
   @ReactMethod
