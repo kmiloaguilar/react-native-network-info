@@ -35,15 +35,22 @@ public class RNNetworkInfo extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
+  public void getMacAddress(final Callback callback){
+    WifiInfo info = wifi.getConnectionInfo();
+    String macAddress = wInfo.getMacAddress();
+    callback.invoke(ssid);
+  }
+
+  @ReactMethod
   public void getSSID(final Callback callback) {
     WifiInfo info = wifi.getConnectionInfo();
-    
+
     // This value should be wrapped in double quotes, so we need to unwrap it.
     String ssid = info.getSSID();
     if (ssid.startsWith("\"") && ssid.endsWith("\"")) {
       ssid = ssid.substring(1, ssid.length() - 1);
     }
-    
+
     callback.invoke(ssid);
   }
 
@@ -69,14 +76,14 @@ public class RNNetworkInfo extends ReactContextBaseJavaModule {
 
     String ipAddressString;
     try {
-        // `getByAddress()` wants network byte-order, aka big-endian. 
+        // `getByAddress()` wants network byte-order, aka big-endian.
         // Good thing we planned ahead!
         ipAddressString = InetAddress.getByAddress(ipByteArray).getHostAddress();
     } catch (UnknownHostException ex) {
         Log.e(TAG, "Unable to determine IP address.");
         ipAddressString = null;
     }
-    
+
     callback.invoke(ipAddressString);
   }
 

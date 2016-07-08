@@ -10,6 +10,10 @@ var NetworkInfo = {
   getIPAddress(ip) {
     RNNetworkInfo.getIPAddress(ip);
   }
+
+  getMacAddress(macAddress){
+    RNNetworkInfo.getMacAddress(macAddress);
+  }
 };
 
 module.exports = NetworkInfo;
